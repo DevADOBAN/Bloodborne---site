@@ -1,4 +1,4 @@
-Meu segundo Projeto um Site do meu jogo favorito, Foram usados HTML,CSS e Js. O site tambem é responsivo.
+Meu Terceiro Projeto um Site do meu jogo favorito, Foram usados HTML,CSS e Js. O site tambem é responsivo.
 
 ![image](https://github.com/user-attachments/assets/8f10d39d-a04a-41e9-bec9-ae87ac2e41ec)
 

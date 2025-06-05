@@ -1,0 +1,581 @@
+:root {
+    --blood-red: #8a0303;
+    --dark-red: #5a0000;
+    --gold: #c8a951;
+    --old-gold: #9d7c3c;
+    --dark-gray: #1a1a1a;
+    --light-gray: #d9d9d9;
+    --parchment: #f5e9d0;
+    --shadow: rgba(0, 0, 0, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Old Standard TT', serif;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a1a"/><path d="M0 0L100 100M100 0L0 100" stroke="%235a0000" stroke-width="0.5"/></svg>');
+    color: var(--light-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, var(--dark-gray) 90%), 
+                linear-gradient(45deg, var(--dark-red) 0%, var(--dark-gray) 100%);
+    opacity: 0.95;
+    z-index: -1;
+}
+
+.blood-splatter {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M50,30 Q70,5 90,30 T130,30 Q150,5 170,30 T150,90 Q170,120 130,150 T90,170 Q70,190 50,170 T30,130 Q5,110 30,90 Z" fill="%238a0303" opacity="0.05"/></svg>');
+    background-size: 200px;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(to bottom, var(--dark-gray), rgba(26, 26, 26, 0.8));
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid var(--blood-red);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--blood-red);
+    margin-right: 15px;
+    text-shadow: 0 0 10px rgba(138, 3, 3, 0.7);
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 10px rgba(138, 3, 3, 0.7); }
+    50% { text-shadow: 0 0 20px rgba(138, 3, 3, 1), 0 0 30px rgba(200, 169, 81, 0.5); }
+    100% { text-shadow: 0 0 10px rgba(138, 3, 3, 0.7); }
+}
+
+.logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 25px;
+}
+
+nav a {
+    color: var(--light-gray);
+    text-decoration: none;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--gold);
+    border-bottom: 2px solid var(--blood-red);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blood-red);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%231a1a1a"/><path d="M600,200 Q700,100 800,200 T1000,200 Q1100,100 1200,200 L1200,800 L0,800 L0,200 Q100,100 200,200 T400,200 Q500,100 600,200 Z" fill="%235a0000" opacity="0.3"/></svg>') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 30%, var(--dark-gray) 100%);
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    color: var(--gold);
+    text-shadow: 3px 3px 0 var(--dark-red), 0 0 20px rgba(138, 3, 3, 0.8);
+    margin-bottom: 1.5rem;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    animation: fadeInDown 1.5s ease;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: var(--parchment);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1.5s ease;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(to bottom, var(--gold), var(--old-gold));
+    color: var(--dark-gray);
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 15px var(--shadow), 0 0 10px rgba(200, 169, 81, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 2s ease;
+}
+
+.cta-button:hover {
+    background: linear-gradient(to bottom, var(--old-gold), var(--gold));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow), 0 0 15px rgba(200, 169, 81, 0.8);
+}
+
+.cta-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.cta-button:hover::after {
+    left: 100%;
+}
+
+.moon {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--parchment) 30%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(138, 3, 3, 0.8), 0 0 100px rgba(138, 3, 3, 0.5);
+    opacity: 0.9;
+    z-index: 1;
+    animation: moonGlow 8s infinite alternate;
+}
+
+@keyframes moonGlow {
+    0% { box-shadow: 0 0 50px rgba(138, 3, 3, 0.8), 0 0 100px rgba(138, 3, 3, 0.5); }
+    100% { box-shadow: 0 0 70px rgba(138, 3, 3, 1), 0 0 130px rgba(138, 3, 3, 0.8); }
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    letter-spacing: 3px;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--blood-red);
+    margin: 15px auto;
+    box-shadow: 0 0 10px var(--blood-red);
+}
+
+/* Lore Section */
+.lore-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.lore-card {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid var(--old-gold);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.lore-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(138, 3, 3, 0.4);
+}
+
+.lore-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--blood-red);
+}
+
+.lore-icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lore-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.lore-card p {
+    color: var(--parchment);
+    line-height: 1.8;
+}
+
+/* Weapons Section */
+.weapons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.weapon-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid var(--blood-red);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.weapon-card:hover {
+    transform: translateY(-10px);
+}
+
+.weapon-header {
+    background: linear-gradient(to right, var(--dark-red), var(--blood-red));
+    padding: 15px;
+    text-align: center;
+}
+
+.weapon-header h3 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0;
+}
+
+.weapon-icon {
+    font-size: 3rem;
+    color: var(--old-gold);
+    padding: 20px 0;
+    text-align: center;
+    background: rgba(90, 0, 0, 0.2);
+}
+
+.weapon-info {
+    padding: 20px;
+    color: var(--parchment);
+}
+
+.weapon-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.weapon-info li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--old-gold);
+}
+
+/* Characters Section */
+.characters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.character-card {
+    background: rgba(26, 26, 26, 0.9);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.character-image {
+    height: 300px;
+    background: linear-gradient(45deg, var(--dark-red), var(--dark-gray));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.character-icon {
+    font-size: 8rem;
+    color: var(--blood-red);
+    opacity: 0.2;
+    position: absolute;
+}
+
+.character-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    text-align: center;
+    padding: 10px;
+    background: rgba(90, 0, 0, 0.7);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-shadow: 2px 2px 0 var(--dark-red);
+}
+
+.character-info {
+    padding: 25px;
+    color: var(--parchment);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to top, var(--dark-gray), #0f0f0f);
+    border-top: 3px solid var(--blood-red);
+    padding: 50px 20px 30px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--blood-red);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--parchment);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links a i {
+    margin-right: 10px;
+    color: var(--blood-red);
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.copyright {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(90, 0, 0, 0.5);
+    color: var(--old-gold);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav li {
+        margin: 5px 10px;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .moon {
+        width: 100px;
+        height: 100px;
+        top: 10%;
+        right: 10%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+.section-title {
+    font-size: 2.2rem;
+}
+}
